@@ -1,0 +1,89 @@
+#board
+#display board
+#fn to play game
+#fn check win
+#fn check tie
+#check tie
+#check win---> check row,check col, check diag
+
+
+#global var
+game_still_going=True      #default true so that game can start
+
+
+winner= 'none'
+
+#whose turn
+current_player="X"
+#simple list 
+board=["-","-","-",
+      "-","-","-",
+      "-","-","-"]
+
+#fn to display board
+def display_board():
+  print(board[0]+'|' +board[1]+'|'+ board[2]+'|')
+  print(board[3]+'|' +board[4]+'|'+ board[5]+'|')
+  print(board[6]+'|' +board[7]+'|'+ board[8]+'|')
+
+#fn to play game
+
+
+#get the position from user
+def handle_turn(player):
+  position=input("choose position from 1-9: ")  #its string
+  position=int(position)-1
+
+  board[position]="x"
+  display_board()
+
+display_board()
+handle_turn(current_player)
+
+def play_game():
+  display_board()       #display innitial board
+  while game_still_going:      #untill somebody wins 
+    handle_turn(current_player)
+
+    check_if_game_over()
+
+    flip_player()
+
+    #if game end
+    if winner == 'X' or winner == "O":
+      print(winner+'won')
+    elif winner == None:
+      print("Tie")
+
+
+def check_if_game_over():
+  check_if_win()
+  check_if_tie()
+
+
+#check win---> check row,check col, check diag
+def check_if_win():
+  #check rows
+  row_winner=check_row()
+  col_winner=check_col()
+  diag_winner=check_diagonal()
+  return
+
+def check_row():
+  return
+
+def check_col():
+  return
+
+def check_diagonal():
+  return
+
+def check_if_tie():
+  return
+
+
+
+
+def flip_player():
+#flip to whose turn x's turn flip=== y's turn flip, again x's turn flip
+  return
