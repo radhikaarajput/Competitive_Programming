@@ -1,0 +1,62 @@
+/* Dynamic Programming implementation of LCS problem */
+#include<iostream>
+#include<cstring>
+#include<cstdlib>
+using namespace std;
+
+/* Returns length of LCS for X[0..m-1], Y[0..n-1] */
+void lcs( char *X, char *Y, int m, int n )
+{
+    int dp[m][n];
+    int i,j;
+    for(i=0;i<=m;i++)
+    {
+        for(j=0;j<=n;j++)
+        {
+            if(i==0||j==0) dp[i][j]=0;
+            else if(X[i-1]==Y[j-1])  dp[i][j]=dp[i-1][j-1]+1;
+            else
+            {
+                dp[i][j]=max(dp[i-1][j], dp[i][j-1]);
+            }
+        }
+    }
+    
+        int index = dp[m][n];
+       char s[index+1];
+       s[index] = '\0';
+       
+    i=m-1;
+    j=n-1;
+    while(i>0 && j>0)
+    {
+        if(X[i]==Y[j])   
+        {
+            s[index-1]=X[i];
+            i--;
+            j--;
+            index--;
+        }
+        else
+        {
+            if(dp[i-1][j]<dp[i][j-1])  j--;   //same row greater
+            else i--;
+        }
+    }
+    
+    
+
+   // cout << "LCS of " << X << " and " << Y << " is " << s;
+   cout<<s;
+}
+
+/* Driver program to test above function */
+int main()
+{
+char X[] = "AGGTAB";
+char Y[] = "GXTXAYB";
+int m = strlen(X);
+int n = strlen(Y);
+lcs(X, Y, m, n);
+return 0;
+}
